@@ -3,6 +3,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Annotation\ApiFilter;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\CheeseListingRepository;
 use Carbon\Carbon;
@@ -25,6 +28,8 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  *       "groups"={"cheese_listing:write"}
  *     }
  * )
+ * @ApiFilter(BooleanFilter::class, properties={"isPublished"})
+ * @ApiFilter(SearchFilter::class, properties={"title": "partial", "description": "partial"})
  * @ORM\Entity(repositoryClass=CheeseListingRepository::class)
  */
 class CheeseListing
