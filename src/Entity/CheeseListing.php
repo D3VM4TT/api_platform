@@ -16,7 +16,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
 
 /**
- * control the items per page for this resrource using pagination
+ * Update api platform to support jsonhal format globally
+ * jsonhal	application/hal+json	yes
+ * csv	text/csv
+ *
+ * Updat only this resource to support csv format
+ *
  */
 
 /**
@@ -33,7 +38,7 @@ use Symfony\Component\Serializer\Annotation\SerializedName;
  *     denormalizationContext={
  *       "groups"={"cheese_listing:write"}
  *     },
- *     paginationItemsPerPage=2
+ *     formats={"json", "jsonhal", "jsonld", "csv"={"text/csv"}}
  * )
  * @ApiFilter(BooleanFilter::class, properties={"isPublished"})
  * @ApiFilter(SearchFilter::class, properties={"title": "partial", "description": "partial"})
