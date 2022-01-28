@@ -14,14 +14,14 @@ use Carbon\Carbon;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\SerializedName;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Update api platform to support jsonhal format globally
- * jsonhal	application/hal+json	yes
- * csv	text/csv
+ * Assert title is not blank with min = 2 and max = 50
+ * add a message for max validation "Describe your cheese in 50 chars or less"
  *
- * Updat only this resource to support csv format
- *
+ * notblank description & price
+ * also check if price is greater than 0
  */
 
 /**
@@ -62,18 +62,26 @@ class CheeseListing
     /**
      * @ORM\Column(type="string", length=255)
      * @Groups({"cheese_listing:read", "cheese_listing:write"})
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     max=40,
+     *     maxMessage="Please describe your cheese in less than 40 characters",
+     *     min="2"
+     * )
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
      * @Groups({"cheese_listing:read"})
+     * @Assert\NotBlank
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
      * @Groups({"cheese_listing:read", "cheese_listing:write"})
+     * @Assert\NotBlank()
      */
     private $price;
 
