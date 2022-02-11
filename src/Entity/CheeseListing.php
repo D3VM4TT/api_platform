@@ -89,7 +89,7 @@ class CheeseListing
     private $isPublished = false;
 
     /**
-     * @ORM\ManyToOne(targetEntity=user::class, inversedBy="cheeseListings")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="cheeseListings")
      * @ORM\JoinColumn(nullable=false)
      * @Groups({"cheese_listing:read", "cheese_listing:write"})
      */
