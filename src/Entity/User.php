@@ -23,17 +23,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     },
  * )
  * @UniqueEntity(fields={"username", "password"})
- *
- * TODO:
- * Add normalization and normalization groups
- *
- * Only expose certain fields (think carefully)
- *
- * Add validation (email and username must be unique)
- * Email must be not blank and a valid email
- *
- * Username cannot be blank
- *
  */
 class User implements UserInterface
 {
@@ -46,7 +35,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:read", "user:write", "cheese_listing:item:get"})
      * @Assert\NotBlank
      * @Assert\Email()
      */
@@ -66,7 +55,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Groups({"user:read", "user:write"})
+     * @Groups({"user:read", "user:write", "cheese_listing:item:get"})
      * @Assert\NotBlank
      */
     private $username;
